@@ -10,6 +10,10 @@ class UsersController < ApplicationController
     @user = User.find(Current.user.id)
     @post_images = @user.post_images 
   end
+
+  def edit
+    @user = User.find(Current.user.id)
+  end
  
   def create
     @user = User.new(user_params)
@@ -21,11 +25,18 @@ class UsersController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
+
+  def update
+    user = User.find(Current.user.id)
+    user.update(user_params)
+    redirect_to user_path
+  end
+
+  
  
   private
  
   def user_params
     # name, email_address, password, password_confirmation を許可
-    params.require(:user).permit(:name, :email_address, :password, :password_confirmation)
-  end
+    params.require(:user).permit(:name, :email_address, :password, :password_confirmation, :profile_image)  end
 end
