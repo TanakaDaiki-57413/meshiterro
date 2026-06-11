@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  resources :post_images, only: [:new,:create, :index, :show]
+  resources :post_images, only: [:new,:create, :index, :show,:destroy]
 
   resources :users, only: [:new, :create] , path_names: { new: 'sign_up' }
 
