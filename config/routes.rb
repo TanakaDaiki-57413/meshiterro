@@ -3,4 +3,6 @@ Rails.application.routes.draw do
   resource :session
   resources :passwords, param: :token
   root to: "homes#top"
+  #名前付きルートをaboutに
+  get "homes/about", to: "homes#about", as: "about"
 end
