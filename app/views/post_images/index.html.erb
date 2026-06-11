@@ -1,2 +1,17 @@
-<h1>PostImages#index</h1>
-<p>Find me in app/views/post_images/index.html.erb</p>
+<%# #post_images変数内から1つずつ取出、post_image変数へ格納 %>
+<% @post_images.each do |post_image| %>
+  <div>
+  	<%# get_imageメソッド呼び出し %>
+    <%= image_tag post_image.get_image %>
+    <p>投稿ユーザー画像：<%= image_tag 'sample-author1.jpg' %></p>
+    <p>ショップ名：<%= post_image.shop_name %></p>
+    <p>説明：<%= post_image.caption %></p>
+    <%# userモデルのnameカラム表示・post_imageモデルに定義される %>
+    <%# アソシエーション設定が済んでいることが条件 %>
+    <p>ユーザーネーム：<%= post_image.user.name %></p>
+    
+    <%# アソシエーション設定されてない場合の書きかた %>
+    <%# user  = User.find(post_image.user_id) %>
+	  <%# user.name %>
+  </div>
+<% end %>
