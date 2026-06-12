@@ -1,5 +1,7 @@
 class PostImage < ApplicationRecord
-  has_one_attached :image  
+  has_one_attached :image
+  
+  has_many :post_comments, dependent: :destroy
   # N:1の関係を結ぶ
   belongs_to :user
 
