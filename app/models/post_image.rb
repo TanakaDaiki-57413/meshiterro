@@ -2,6 +2,7 @@ class PostImage < ApplicationRecord
   has_one_attached :image
   
   has_many :post_comments, dependent: :destroy
+  has_many :favorites, dependent: :destroy
   # N:1の関係を結ぶ
   belongs_to :user
 
@@ -12,5 +13,11 @@ class PostImage < ApplicationRecord
     end
     image
   end
+
+  # 該当するユーザーIDが存在するかの確認
+  def favorited_by?(user)
+    favorites.exists?(user_id: user.id)
+  end
+
 
 end

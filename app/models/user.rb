@@ -8,6 +8,7 @@ class User < ApplicationRecord
   # 1:Nの関係を結ぶ
   has_many :post_images, dependent: :destroy
   has_many :post_comments, dependent: :destroy
+  has_many :favorites, dependent: :destroy
 
   def get_profile_image(width,height)
     unless profile_image.attached?
