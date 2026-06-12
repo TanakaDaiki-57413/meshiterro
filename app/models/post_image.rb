@@ -6,6 +6,10 @@ class PostImage < ApplicationRecord
   # N:1の関係を結ぶ
   belongs_to :user
 
+  #バリデーション設定
+  validates :caption, presence: true
+  validates :shop_name, presence: true
+
   def get_image
     unless image.attached?
       file_path = Rails.root.join('app/assets/images/no_image.jpg')
