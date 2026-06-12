@@ -1,21 +1,2 @@
-<%# #post_images変数内から1つずつ取出、post_image変数へ格納 %>
-<% @post_images.each do |post_image| %>
-  <div>
-  	<%# get_imageメソッド呼び出し %>
-    <%= link_to post_image_path(post_image.id) do %>
-        <%= image_tag post_image.get_image %>
-    <% end %>
-    <p>投稿ユーザー画像：<%= image_tag post_image.user.get_profile_image(100,100) %></p>
-    <p>ショップ名：<%= post_image.shop_name %></p>
-    <p>説明：<%= post_image.caption %></p>
-    <%# userモデルのnameカラム表示・post_imageモデルに定義される %>
-    <%# アソシエーション設定が済んでいることが条件 %>
-    <p>ユーザーネーム：<%= post_image.user.name %></p>
-    
-    <%# アソシエーション設定されてない場合の書きかた %>
-    <%# user  = User.find(post_image.user_id) %>
-	  <%# user.name %>
-
-    <p><%= link_to "#{post_image.post_comments.count} コメント", post_image_path(post_image.id) %></p>
-  </div>
-<% end %>
+<%= render 'list', post_images: @post_images %>
+<%# render [部分テンプレートファイルの指定], [ローカル変数]:[渡す値] %>
